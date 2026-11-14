@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!-- Page du module Stocks - TerraConnect. lang="fr" = la page est en français -->
+<html lang="fr">
+<head>
+  <!-- Encodage UTF-8 : permet d'afficher les accents (é, è, à...) correctement -->
+  <meta charset="UTF-8">
+  <!-- Viewport : adapte la page à la taille de l'écran (téléphone, tablette, PC) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tableau de bord Stocks - TerraConnect</title>
+  <!-- Font Awesome : bibliothèque d'icônes (balises <i class="fa-solid ...">). Nécessite internet -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Notre feuille de style commune (couleurs, mise en page de la charte TerraConnect) -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <!-- ========== MENU LATÉRAL (identique sur toutes les pages) ========== -->
+  <aside class="sidebar">
+    <!-- Logo + nom : un clic ramène au tableau de bord -->
+    <a class="logo" href="dashboard-stocks.html"><img src="assets/img/logo-terraconnect.png" alt="Logo TerraConnect"><span>TerraConnect</span></a>
+    <nav>
+      <!-- Liens de MON module. La classe "actif" met en vert clair la page en cours -->
+      <div class="menu-titre">Module Stocks</div>
+      <a class="lien actif" href="dashboard-stocks.html"><i class="fa-solid fa-chart-line"></i> Tableau de bord</a>
+      <a class="lien" href="liste-stocks.html"><i class="fa-solid fa-warehouse"></i> Stocks</a>
+      <a class="lien" href="liste-produits-stock.html"><i class="fa-solid fa-boxes-stacked"></i> Produits stockés</a>
+      <a class="lien" href="alertes-stock.html"><i class="fa-solid fa-triangle-exclamation"></i> Alertes</a>
+      <!-- Modules des autres membres : grisés et non cliquables (classe "desactive") pour l'instant -->
+      <div class="menu-titre">Autres modules</div>
+      <a class="lien desactive" href="#"><i class="fa-solid fa-users"></i> Utilisateurs</a>
+      <a class="lien desactive" href="#"><i class="fa-solid fa-truck"></i> Livraisons</a>
+      <a class="lien desactive" href="#"><i class="fa-solid fa-tractor"></i> Matériel agricole</a>
+      <a class="lien desactive" href="#"><i class="fa-solid fa-recycle"></i> Déchets &amp; Recyclage</a>
+      <a class="lien desactive" href="#"><i class="fa-solid fa-cart-shopping"></i> Marketplace</a>
+    </nav>
+    <!-- Lien de déconnexion en bas du menu -->
+    <div class="deconnexion"><a class="lien" href="#"><i class="fa-solid fa-right-from-bracket"></i> Déconnexion</a></div>
+  </aside>
+
+  <!-- ========== ZONE DE DROITE : barre du haut + contenu de la page ========== -->
+  <div class="contenu">
+    <!-- Barre du haut : champ de recherche et utilisateur connecté -->
+    <header class="topbar">
+      <div class="recherche"><i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Rechercher..."></div>
+      <div class="admin"><div class="avatar">H</div> Hend Ben Abdeli</div>
+    </header>
+
+    <!-- ========== CONTENU PROPRE À CETTE PAGE ========== -->
+    <main>
+      <!-- En-tête : fil d'Ariane, titre, description et bouton d'action -->
+      <div class="entete">
+        <div>
+          <h1>Tableau de bord des stocks</h1>
+          <p>Vue d'ensemble des stocks agricoles et des produits stockés.</p>
+        </div>
+        <a href="ajouter-stock.html" class="btn btn-primaire"><i class="fa-solid fa-plus"></i> Ajouter un stock</a>
+      </div>
+
+      <!-- 4 cartes de statistiques (grille de 4 colonnes). Chiffres d'exemple : plus tard ils viendront de la base de données -->
+      <section class="grille g4" style="margin-bottom:18px">
+        <div class="carte stat"><div class="icone"><i class="fa-solid fa-warehouse"></i></div><div><div class="nb">3</div><div class="lib">Stocks actifs</div></div></div>
+        <div class="carte stat"><div class="icone"><i class="fa-solid fa-boxes-stacked"></i></div><div><div class="nb">12</div><div class="lib">Produits stockés</div></div></div>
+        <div class="carte stat marron"><div class="icone"><i class="fa-solid fa-weight-hanging"></i></div><div><div class="nb">1 850 kg</div><div class="lib">Quantité totale</div></div></div>
+        <div class="carte stat alerte"><div class="icone"><i class="fa-solid fa-triangle-exclamation"></i></div><div><div class="nb">3</div><div class="lib">Alertes de stock</div></div></div>
+      </section>
+
+      <!-- Grille de 2 colonnes : tableau à gauche, alertes à droite -->
+      <section class="grille g2">
+        <div class="carte">
+          <h2>Derniers produits ajoutés <a href="liste-produits-stock.html" class="btn btn-clair btn-sm">Voir tout</a></h2>
+          <!-- Tableau des derniers produits. Le badge (ok / bas / critique) indique l'état de la quantité -->
+          <table>
+            <thead><tr><th>Produit</th><th>Stock</th><th>Quantité</th><th>Statut</th></tr></thead>
+            <tbody>
+              <tr><td>Tomates</td><td>Stock Principal</td><td>320 kg</td><td><span class="badge ok">Normal</span></td></tr>
+              <tr><td>Carottes</td><td>Stock Principal</td><td>45 kg</td><td><span class="badge bas">Bas</span></td></tr>
+              <tr><td>Oranges</td><td>Stock Fruits</td><td>600 kg</td><td><span class="badge ok">Normal</span></td></tr>
+              <tr><td>Blé</td><td>Stock Secondaire</td><td>8 kg</td><td><span class="badge critique">Critique</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="carte">
+          <h2>Alertes récentes</h2>
+          <!-- Alertes : "critique" = rouge, "bas" = orange -->
+          <div class="alerte-item critique"><i class="fa-solid fa-circle-exclamation pic"></i><div class="txt"><strong>Blé</strong><br><small>8 kg restants (seuil : 50 kg)</small></div></div>
+          <div class="alerte-item bas"><i class="fa-solid fa-triangle-exclamation pic"></i><div class="txt"><strong>Carottes</strong><br><small>45 kg restants (seuil : 100 kg)</small></div></div>
+          <a href="alertes-stock.html" class="btn btn-clair btn-sm">Voir toutes les alertes</a>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

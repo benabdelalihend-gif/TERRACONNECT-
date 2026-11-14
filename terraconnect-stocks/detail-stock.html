@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!-- Page du module Stocks - TerraConnect. lang="fr" = la page est en français -->
+<html lang="fr">
+<head>
+  <!-- Encodage UTF-8 : permet d'afficher les accents (é, è, à...) correctement -->
+  <meta charset="UTF-8">
+  <!-- Viewport : adapte la page à la taille de l'écran (téléphone, tablette, PC) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Détail d'un stock - TerraConnect</title>
+  <!-- Font Awesome : bibliothèque d'icônes (balises <i class="fa-solid ...">). Nécessite internet -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Notre feuille de style commune (couleurs, mise en page de la charte TerraConnect) -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <!-- ========== MENU LATÉRAL (identique sur toutes les pages) ========== -->
+  <aside class="sidebar">
+    <!-- Logo + nom : un clic ramène au tableau de bord -->
+    <a class="logo" href="dashboard-stocks.html"><img src="assets/img/logo-terraconnect.png" alt="Logo TerraConnect"><span>TerraConnect</span></a>
+    <nav>
+      <!-- Liens de MON module. La classe "actif" met en vert clair la page en cours -->
+      <div class="menu-titre">Module Stocks</div>
+      <a class="lien" href="dashboard-stocks.html"><i class="fa-solid fa-chart-line"></i> Tableau de bord</a>
+      <a class="lien actif" href="liste-stocks.html"><i class="fa-solid fa-warehouse"></i> Stocks</a>
+      <a class="lien" href="liste-produits-stock.html"><i class="fa-solid fa-boxes-stacked"></i> Produits stockés</a>
+      <a class="lien" href="alertes-stock.html"><i class="fa-solid fa-triangle-exclamation"></i> Alertes</a>
+      <!-- Modules des autres membres : grisés et non cliquables (classe "desactive") pour l'instant -->
+      <div class="menu-titre">Autres modules</div>
+      <a class="lien desactive" href="#"><i class="fa-solid fa-users"></i> Utilisateurs</a>
+      <a class="lien desactive" href="#"><i class="fa-solid fa-truck"></i> Livraisons</a>
+      <a class="lien desactive" href="#"><i class="fa-solid fa-tractor"></i> Matériel agricole</a>
+      <a class="lien desactive" href="#"><i class="fa-solid fa-recycle"></i> Déchets &amp; Recyclage</a>
+      <a class="lien desactive" href="#"><i class="fa-solid fa-cart-shopping"></i> Marketplace</a>
+    </nav>
+    <!-- Lien de déconnexion en bas du menu -->
+    <div class="deconnexion"><a class="lien" href="#"><i class="fa-solid fa-right-from-bracket"></i> Déconnexion</a></div>
+  </aside>
+
+  <!-- ========== ZONE DE DROITE : barre du haut + contenu de la page ========== -->
+  <div class="contenu">
+    <!-- Barre du haut : champ de recherche et utilisateur connecté -->
+    <header class="topbar">
+      <div class="recherche"><i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Rechercher..."></div>
+      <div class="admin"><div class="avatar">H</div> Hend Ben Abdeli</div>
+    </header>
+
+    <!-- ========== CONTENU PROPRE À CETTE PAGE ========== -->
+    <main>
+      <!-- En-tête : fil d'Ariane, titre, description et bouton d'action -->
+      <div class="entete">
+        <div>
+          <div class="fil"><a href="liste-stocks.html">Stocks</a> / Détail</div>
+          <h1>Stock Principal</h1>
+          <p>Informations du stock et liste de ses produits.</p>
+        </div>
+        <div style="display:flex;gap:8px">
+          <a href="modifier-stock.html" class="btn btn-secondaire"><i class="fa-solid fa-pen"></i> Modifier</a>
+          <a href="formulaire-produit-stock.html" class="btn btn-primaire"><i class="fa-solid fa-plus"></i> Ajouter un produit</a>
+        </div>
+      </div>
+
+      <!-- Carte 1 : informations du stock (entité Stock). <dl> = liste de définitions, <dt> = étiquette, <dd> = valeur -->
+      <section class="carte" style="margin-bottom:18px">
+        <h2>Informations du stock</h2>
+        <dl class="infos">
+          <div><dt>Nom</dt><dd>Stock Principal</dd></div>
+          <div><dt>Emplacement</dt><dd>Ferme Nord</dd></div>
+          <div><dt>Date de création</dt><dd>12/10/2026</dd></div>
+          <div><dt>Capacité maximale</dt><dd>5 000 kg</dd></div>
+          <div><dt>Quantité actuelle</dt><dd>1 090 kg</dd></div>
+          <div><dt>Taux de remplissage</dt><dd>
+            <div class="barre"><span style="width:22%"></span></div>
+            22 %
+          </dd></div>
+        </dl>
+      </section>
+
+      <!-- Carte 2 : JOINTURE entre les deux entités. Un Stock contient plusieurs ProduitStock (relation 1 vers N). Ici on liste les produits de CE stock -->
+      <section class="carte">
+        <h2>Produits de ce stock</h2>
+        <table>
+          <thead><tr><th>Produit</th><th>Catégorie</th><th>Quantité</th><th>Unité</th><th>Statut</th><th>Actions</th></tr></thead>
+          <tbody>
+            <tr><td>Tomates</td><td>Légumes</td><td>320</td><td>kg</td><td><span class="badge ok">Normal</span></td>
+              <td class="actions"><a href="formulaire-produit-stock.html" class="btn btn-clair btn-sm"><i class="fa-solid fa-pen"></i></a><a href="#" class="btn btn-danger btn-sm" onclick="return confirm('Supprimer ce produit ?')"><i class="fa-solid fa-trash"></i></a></td></tr>
+            <tr><td>Carottes</td><td>Légumes</td><td>45</td><td>kg</td><td><span class="badge bas">Bas</span></td>
+              <td class="actions"><a href="formulaire-produit-stock.html" class="btn btn-clair btn-sm"><i class="fa-solid fa-pen"></i></a><a href="#" class="btn btn-danger btn-sm" onclick="return confirm('Supprimer ce produit ?')"><i class="fa-solid fa-trash"></i></a></td></tr>
+            <tr><td>Pommes de terre</td><td>Légumes</td><td>500</td><td>kg</td><td><span class="badge ok">Normal</span></td>
+              <td class="actions"><a href="formulaire-produit-stock.html" class="btn btn-clair btn-sm"><i class="fa-solid fa-pen"></i></a><a href="#" class="btn btn-danger btn-sm" onclick="return confirm('Supprimer ce produit ?')"><i class="fa-solid fa-trash"></i></a></td></tr>
+            <tr><td>Salade</td><td>Légumes</td><td>25</td><td>kg</td><td><span class="badge bas">Bas</span></td>
+              <td class="actions"><a href="formulaire-produit-stock.html" class="btn btn-clair btn-sm"><i class="fa-solid fa-pen"></i></a><a href="#" class="btn btn-danger btn-sm" onclick="return confirm('Supprimer ce produit ?')"><i class="fa-solid fa-trash"></i></a></td></tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

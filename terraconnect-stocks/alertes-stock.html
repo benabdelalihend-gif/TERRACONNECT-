@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!-- Page du module Stocks - TerraConnect. lang="fr" = la page est en français -->
+<html lang="fr">
+<head>
+  <!-- Encodage UTF-8 : permet d'afficher les accents (é, è, à...) correctement -->
+  <meta charset="UTF-8">
+  <!-- Viewport : adapte la page à la taille de l'écran (téléphone, tablette, PC) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alertes de stock - TerraConnect</title>
+  <!-- Font Awesome : bibliothèque d'icônes (balises <i class="fa-solid ...">). Nécessite internet -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Notre feuille de style commune (couleurs, mise en page de la charte TerraConnect) -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <!-- ========== MENU LATÉRAL (identique sur toutes les pages) ========== -->
+  <aside class="sidebar">
+    <!-- Logo + nom : un clic ramène au tableau de bord -->
+    <a class="logo" href="dashboard-stocks.html"><img src="assets/img/logo-terraconnect.png" alt="Logo TerraConnect"><span>TerraConnect</span></a>
+    <nav>
+      <!-- Liens de MON module. La classe "actif" met en vert clair la page en cours -->
+      <div class="menu-titre">Module Stocks</div>
+      <a class="lien" href="dashboard-stocks.html"><i class="fa-solid fa-chart-line"></i> Tableau de bord</a>
+      <a class="lien" href="liste-stocks.html"><i class="fa-solid fa-warehouse"></i> Stocks</a>
+      <a class="lien" href="liste-produits-stock.html"><i class="fa-solid fa-boxes-stacked"></i> Produits stockés</a>
+      <a class="lien actif" href="alertes-stock.html"><i class="fa-solid fa-triangle-exclamation"></i> Alertes</a>
+      <!-- Modules des autres membres : grisés et non cliquables (classe "desactive") pour l'instant -->
+      <div class="menu-titre">Autres modules</div>
+      <a class="lien desactive" href="#"><i class="fa-solid fa-users"></i> Utilisateurs</a>
+      <a class="lien desactive" href="#"><i class="fa-solid fa-truck"></i> Livraisons</a>
+      <a class="lien desactive" href="#"><i class="fa-solid fa-tractor"></i> Matériel agricole</a>
+      <a class="lien desactive" href="#"><i class="fa-solid fa-recycle"></i> Déchets &amp; Recyclage</a>
+      <a class="lien desactive" href="#"><i class="fa-solid fa-cart-shopping"></i> Marketplace</a>
+    </nav>
+    <!-- Lien de déconnexion en bas du menu -->
+    <div class="deconnexion"><a class="lien" href="#"><i class="fa-solid fa-right-from-bracket"></i> Déconnexion</a></div>
+  </aside>
+
+  <!-- ========== ZONE DE DROITE : barre du haut + contenu de la page ========== -->
+  <div class="contenu">
+    <!-- Barre du haut : champ de recherche et utilisateur connecté -->
+    <header class="topbar">
+      <div class="recherche"><i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Rechercher..."></div>
+      <div class="admin"><div class="avatar">H</div> Hend Ben Abdeli</div>
+    </header>
+
+    <!-- ========== CONTENU PROPRE À CETTE PAGE ========== -->
+    <main>
+      <!-- En-tête : fil d'Ariane, titre, description et bouton d'action -->
+      <div class="entete">
+        <div>
+          <div class="fil"><a href="dashboard-stocks.html">Stocks</a> / Alertes</div>
+          <h1>Alertes de stock</h1>
+          <p>Produits dont la quantité est passée sous le seuil d'alerte.</p>
+        </div>
+      </div>
+
+      <!-- Filtres : type d'alerte et stock concerné -->
+      <div class="filtres">
+        <select>
+          <option>Toutes les alertes</option>
+          <option>Critiques</option>
+          <option>Stock bas</option>
+        </select>
+        <select>
+          <option>Tous les stocks</option>
+          <option>Stock Principal</option>
+          <option>Stock Secondaire</option>
+          <option>Stock Fruits</option>
+        </select>
+      </div>
+
+      <!-- Une alerte = un produit sous son seuil. "critique" (rouge) = presque épuisé, "bas" (orange) = à surveiller. Le bouton envoie vers le formulaire pour réapprovisionner -->
+      <div class="alerte-item critique">
+        <i class="fa-solid fa-circle-exclamation pic"></i>
+        <div class="txt"><strong>Blé</strong> <span class="badge critique">Critique</span><br>
+          <small>Stock Secondaire (Ferme Sud) : 8 kg restants, seuil d'alerte : 50 kg</small></div>
+        <a href="formulaire-produit-stock.html" class="btn btn-primaire btn-sm"><i class="fa-solid fa-plus"></i> Réapprovisionner</a>
+      </div>
+
+      <div class="alerte-item bas">
+        <i class="fa-solid fa-triangle-exclamation pic"></i>
+        <div class="txt"><strong>Carottes</strong> <span class="badge bas">Bas</span><br>
+          <small>Stock Principal (Ferme Nord) : 45 kg restants, seuil d'alerte : 100 kg</small></div>
+        <a href="formulaire-produit-stock.html" class="btn btn-primaire btn-sm"><i class="fa-solid fa-plus"></i> Réapprovisionner</a>
+      </div>
+
+      <div class="alerte-item bas">
+        <i class="fa-solid fa-triangle-exclamation pic"></i>
+        <div class="txt"><strong>Salade</strong> <span class="badge bas">Bas</span><br>
+          <small>Stock Principal (Ferme Nord) : 25 kg restants, seuil d'alerte : 40 kg</small></div>
+        <a href="formulaire-produit-stock.html" class="btn btn-primaire btn-sm"><i class="fa-solid fa-plus"></i> Réapprovisionner</a>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
